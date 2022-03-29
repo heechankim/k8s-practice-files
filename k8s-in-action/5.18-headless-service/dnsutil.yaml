@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dnsutil
+spec:
+  containers:
+    - name: dnsutil
+      image: tutum/dnsutils
+      command: ["sleep"]
+      args: ["infinity"]
