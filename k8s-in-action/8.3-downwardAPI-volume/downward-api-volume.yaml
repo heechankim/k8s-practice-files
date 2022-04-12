@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: downward
-  labes:
+  name: downward-volume
+  labels:
     foo: bar
   annotations:
     key1: value1
@@ -44,7 +44,7 @@ spec:
         - path: "containerCpuRequestMilliCores"
           resourceFieldRef:
             containerName: main
-            resource: request.cpu
+            resource: requests.cpu
             divisor: 1m
         - path: "containerMemoryLimitBytes"
           resourceFieldRef:
