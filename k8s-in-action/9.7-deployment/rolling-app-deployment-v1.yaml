@@ -18,3 +18,16 @@ spec:
           ports:
             - containerPort: 8080
               protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rolling-app
+spec:
+  selector:
+    matchLabels:
+      app: rolling-app
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
