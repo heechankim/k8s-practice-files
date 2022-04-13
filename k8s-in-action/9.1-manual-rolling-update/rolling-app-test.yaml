@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rolling-app
+spec:
+  containers:
+    - name: rolling-app
+      image: heechankim/rolling-app:v1
+      ports:
+        - containerPort: 8080
+          protocol: TCP
