@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rolling-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rolling-app
+  template:
+    metadata:
+      labels:
+        app: rolling-app
+    spec:
+      containers:
+        - name: http-go
+          image: heechankim/rolling-app:v2
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rolling-app
+spec:
+  selector:
+    app: rolling-app
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
