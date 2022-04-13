@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rolling-app-v2
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: rolling-app
+      labels:
+        app: rolling-app
+    spec:
+      containers:
+        - image: heechankim/rolling-app:v2
+          name: http-go
