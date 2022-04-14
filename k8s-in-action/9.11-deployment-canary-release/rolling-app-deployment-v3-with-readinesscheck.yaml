@@ -4,6 +4,12 @@ metadata:
   name: rolling-app
 spec:
   replicas: 3
+  minReadySeconds: 10
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
   selector:
     matchLabels:
       app: rolling-app
@@ -14,10 +20,15 @@ spec:
     spec:
       containers:
         - name: http-go
-          image: heechankim/rolling-app:v2
+          image: heechankim/rolling-app:v3
           ports:
             - containerPort: 8080
               protocol: TCP
+          readinessProbe:
+            periodSeconds: 1
+            httpGet:
+              path: /
+              port: 8080
 ---
 apiVersion: v1
 kind: Service
